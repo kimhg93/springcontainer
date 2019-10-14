@@ -3,6 +3,7 @@ package kr.co.itcen.springcontainer.test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -15,11 +16,44 @@ public class ContainerTest {
 		testApplicationContext();
 	}
 	
+	
 	public static void testApplicationContext() {
 		ApplicationContext appCtxt = new ClassPathXmlApplicationContext("config/user/applicationContext01.xml");
-		User user = appCtxt.getBean(User.class);
-		System.out.println(user);
 		
+		
+		//error : 같은 타입의 빈이 1개 이상 있느강우 타입으로 가져오면 예외발생.
+		//User user = appCtxt.getBean(User.class);
+		
+		//id로 가져오기
+		User user1 = (User)appCtxt.getBean("user1");
+		System.out.println(user1);
+		
+		//name로 가져오기
+		User usr2 = (User)appCtxt.getBean("usr2");
+		System.out.println(usr2);	
+		
+		//singleton 확인
+		User user2 = (User)appCtxt.getBean("user2");
+		System.out.println(usr2 == user2);
+		
+		//User(Long, Stirng) 으로 생성된 빈 가져오기		
+		User user3 = (User)appCtxt.getBean("user3");
+		System.out.println(user3);
+		
+		//User() 으로 생성되고 프로퍼티 세팅을 한(Setter) 빈 가져오기
+		User user4 = (User)appCtxt.getBean("user4");
+		System.out.println(user4);
+		
+		//DI설정한 빈 가져오기
+		User user5 = (User)appCtxt.getBean("user5");
+		System.out.println(user5);
+		
+		//DI 가져오기 2
+		User user6 = (User)appCtxt.getBean("user6");
+		System.out.println(user6);
+		
+		
+		((ConfigurableApplicationContext)appCtxt).close();
 	}
 	
 	public static void testBeanFactory() {
