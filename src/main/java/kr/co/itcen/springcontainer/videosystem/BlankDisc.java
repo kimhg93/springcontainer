@@ -11,15 +11,15 @@ public class BlankDisc implements DigitalVideoDisc {
 		
 	}
 	
+	public BlankDisc(String title, String studio) {
+		this.title = title;
+		this.studio = studio;
+	}
+
 	public BlankDisc(String title, String studio, List<String> actors) {
 		this.title = title;
 		this.studio = studio;
 		this.actors = actors;
-	}
-	
-	public BlankDisc(String title, String studio) {
-		this.title = title;
-		this.studio = studio;
 	}
 	
 	public String getTitle() {
@@ -45,11 +45,11 @@ public class BlankDisc implements DigitalVideoDisc {
 	public void play() {
 		System.out.println("Playing Movie "+studio+"\'s "+title );
 	}
-	
+
 	@Override
 	public String toString() {
-		return "BlankDisc [title=" + title + ", studio=" + studio + ", actors=" + actors + ", getTitle()=" + getTitle()
-				+ ", getStudio()=" + getStudio() + ", getActors()=" + getActors() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "BlankDisc [title=" + title + ", studio=" + studio + ", actors=" + actors + "]";
 	}
+	
+	
 }
